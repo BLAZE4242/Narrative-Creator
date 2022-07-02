@@ -39,10 +39,12 @@ namespace Test_Narritive
         bool hasUserSelected = false;
 
 
-        public void MakeChoice(params string[] options)
+        public void MakeChoice(Dictionary<string, string> options)
         {
+            string[] optionsText = options.Keys.ToArray();
+
             currentOptions = new List<string>();
-            foreach (string option in options)
+            foreach (string option in optionsText)
             {
                 currentOptions.Add(option);
             }
@@ -88,7 +90,11 @@ namespace Test_Narritive
 
         void RenderOptions(bool clearConsole = false)
         {
-            if (clearConsole) Console.Clear();
+            if (clearConsole)
+            {
+                Console.Clear();
+                Console.WriteLine(TextInterpreter.scriptHistory);
+            }
 
             if(currentColours.Count == 0)
             {
