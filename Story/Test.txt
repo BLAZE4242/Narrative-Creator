@@ -1,0 +1,15 @@
+﻿This game works by pressing enter to progress through the story, like you need to do now.
+In this game you will have to make choices, all of which will impact the story.
+When a choice comes up, you can use the up and down arrow keys to select an option and then press enter to confirm it.
+Do you understand?
+
+choice:
+
+Yup! || pass
+I think so? || pass
+How do I move up and down again? || pass
+This is too confusing for me... || pass
+
+endchoice
+
+Alright, glad you understand it!

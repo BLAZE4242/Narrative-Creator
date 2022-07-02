@@ -1,0 +1,10 @@
+C:\Users\elira\source\repos\Test Narritive\bin\Debug\Test Narritive.exe
+C:\Users\elira\source\repos\Test Narritive\bin\Debug\Test Narritive.pdb
+C:\Users\elira\source\repos\Test Narritive\obj\Debug\Test Narritive.csproj.AssemblyReference.cache
+C:\Users\elira\source\repos\Test Narritive\obj\Debug\Test Narritive.csproj.CoreCompileInputs.cache
+C:\Users\elira\source\repos\Test Narritive\obj\Debug\Test Narritive.exe
+C:\Users\elira\source\repos\Test Narritive\obj\Debug\Test Narritive.pdb
+C:\Users\elira\source\repos\Test Narritive\bin\Debug\Test Narritive.exe.manifest
+C:\Users\elira\source\repos\Test Narritive\bin\Debug\Test Narritive.application
+C:\Users\elira\source\repos\Test Narritive\obj\Debug\Test Narritive.exe.manifest
+C:\Users\elira\source\repos\Test Narritive\obj\Debug\Test Narritive.application
