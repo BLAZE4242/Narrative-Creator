@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Text;
 
 namespace Test_Narritive
@@ -39,6 +40,10 @@ namespace Test_Narritive
         }
 
         bool isInChoiceLoop = false;
+
+        bool isInIfLoop = false; // wtf
+        bool isConditionTrue = false;
+
         Dictionary<string, string> choiceAction = new Dictionary<string, string>();
         public static string scriptHistory;
         bool interpretLine(string line) // returns true if can read line
@@ -57,15 +62,49 @@ namespace Test_Narritive
             {
                 choiceAction.Add(SplitByString(line, " || ")[0], SplitByString(line, " || ")[1]);
             }
+            else if (line.StartsWith("$ if"))
+            {
+                isInIfLoop = true;
+                isConditionTrue = IfCondition.IsConditionTrue(SplitByString(line, " || "));
+            }
+            else if(line.StartsWith("$ endif"))
+            {
+                isInIfLoop = false;
+                isConditionTrue = false;
+            }
+            else if(isInIfLoop && !isConditionTrue)
+            {
+                return false;
+            }
             else if (line.StartsWith("$ goto"))
             {
                 new UserSelectsChoice().OnUserMakesChoice(SplitByString(line, " || ")[1], false);
                 return false;
             }
+            else if (line.StartsWith("$ wait"))
+            {
+                Thread.Sleep(int.TryParse(SplitByString(line, " || ")[1], out var timeToWait) ? timeToWait * 1000 : 0); // ? operator is for if statements, if_true : if_false
+                return false;
+            }
+            else if (line.StartsWith("$ define"))
+            {
+                new define().defineVariable(line);
+            }
             else
             {
-                scriptHistory += line + "\n";
-                Console.WriteLine(line);
+
+                string lineToPrint = line;
+                foreach (string key in define.stringVariables.Keys)
+                {
+                    lineToPrint = lineToPrint.Replace("{" + key + "}", define.stringVariables[key]);
+                }
+                foreach (string key in define.floatVariables.Keys)
+                {
+                    lineToPrint = lineToPrint.Replace("{" + key + "}", define.floatVariables[key].ToString());
+                }
+
+                scriptHistory += lineToPrint + "\n";
+                Console.WriteLine(lineToPrint);
                 return true;
             }
 
@@ -104,7 +143,7 @@ namespace Test_Narritive
             return path;
         }
 
-        string[] SplitByString(string str, string split)
+        public string[] SplitByString(string str, string split)
         {
             return str.Split(new string[] { split }, StringSplitOptions.None);
         }

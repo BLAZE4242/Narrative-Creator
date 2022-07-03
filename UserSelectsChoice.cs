@@ -10,6 +10,10 @@ namespace Test_Narritive
     {
         public void OnUserMakesChoice(string fileName, bool clearScreen = true)
         {
+            if (fileName == "pass")
+            {
+                return;
+            }
             TextInterpreter _interpret = new TextInterpreter();
             _interpret.ReadLines(GetPath(fileName), clearScreen);
         }

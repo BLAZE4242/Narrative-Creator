@@ -2,5 +2,5 @@ poggers!
 
 $ choice
 
-jsdklfjdf || asfdsdf
+jsdklfjdf || pass
 $ endchoice

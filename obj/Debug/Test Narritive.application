@@ -4,14 +4,14 @@
   <description asmv2:publisher="Test Narritive" asmv2:product="Test Narritive" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" />
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Test Narritive.exe.manifest" size="3644">
+    <dependentAssembly dependencyType="install" codebase="Test Narritive.exe.manifest" size="3645">
       <assemblyIdentity name="Test Narritive.exe" version="1.0.0.5" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>2mB5ZYMQ2XhTl4EmJ0p9Af/ByR4=</dsig:DigestValue>
+        <dsig:DigestValue>QyHowiKN4pRxCEGPvFB+2Px0psI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
