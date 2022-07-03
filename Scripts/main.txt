@@ -1,0 +1,37 @@
+This game works by pressing enter or space to progress through the story, like you need to do now.
+In this game you will have to make choices, all of which will impact the story.
+When a choice comes up, you can use the up and down arrow keys to select an option and then press enter to confirm it.
+Do you understand?
+$ define || string || wasd || hello
+$ define || string || playerName || jeff
+$ define || string || wasd || world
+
+$ define || float || viewers || 5.5
+$ define || float || viewers || + || 1
+$ define || float || viewers || - || 100.69420
+$ define || float || viewers || + || 1
+
+$ if || string || playerName || jeff
+omg it's jeffery how cool {viewers}
+$ define || float || viewers || + || 100
+$ endif
+
+$ define || string || playerName || bLAZE
+
+$ if || string || playerName || bLAZE
+ewww bad stremer
+$ define || float || viewers || - || 100
+$ endif
+
+
+by the way, here's that variable: {wasd}. pretty cool huh? btw ur name is {playerName} {viewers}
+
+
+
+$ choice
+Yup! || user understands
+I think so? || user understands
+How do I move up and down again? || user understands
+This is too confusing for me... || user understands
+
+$ endchoice
