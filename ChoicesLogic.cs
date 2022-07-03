@@ -50,10 +50,10 @@ namespace Test_Narritive
             }
 
             RenderOptions();
-            CheckForInput();
+            CheckForInput(options);
         }
 
-        void CheckForInput()
+        void CheckForInput(Dictionary<string, string> options)
         {
             while (!hasUserSelected)
             {
@@ -61,19 +61,29 @@ namespace Test_Narritive
 
                 if (key.Key == ConsoleKey.UpArrow)
                 {
-                    OnUserInput(false);
+                    OnUserInput(-1, options);
                 }
                 else if (key.Key == ConsoleKey.DownArrow)
                 {
-                    OnUserInput(true);
+                    OnUserInput(1, options);
+                }
+                else if (key.Key == ConsoleKey.Enter)
+                {
+                    OnUserInput(0, options);
                 }
             }
         }
 
-        void OnUserInput(bool wasDown)
+        void OnUserInput(int input, Dictionary<string, string> options)
         {
-            if (wasDown) userSelectedOption++;
-            else userSelectedOption--;
+            userSelectedOption += input;
+
+            if (input == 0)
+            {
+                hasUserSelected = true;
+                new UserSelectsChoice().OnUserMakesChoice(options.Values.ToArray()[userSelectedOption]);
+                return;
+            }
 
             if (userSelectedOption < 0)
             {

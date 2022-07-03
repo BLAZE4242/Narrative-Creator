@@ -7,12 +7,10 @@ namespace Test_Narritive
 {
     class Program
     {
-        
-
         public static void Main(string[] args)
         {
-            TextInterpreter _interpret = new TextInterpreter();
-            _interpret.ReadLines("main");
+            UserSelectsChoice managerOrSmthin = new UserSelectsChoice();
+            managerOrSmthin.OnUserMakesChoice("main");
 
             //ChoicesLogic _choice = new ChoicesLogic();
             //_choice.MakeChoice("Choice one?", "Choice two!", "This might be choice 3", "is this one 4 I kinda forgot", "A 5th option????");

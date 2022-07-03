@@ -1,0 +1,9 @@
+Great!
+lmao
+
+$ choice
+lmao? || user double understands
+okey || user double understands
+fuck oyu || user swears
+
+$ endchoice
