@@ -11,12 +11,13 @@ namespace Test_Narritive
     class TextInterpreter
     {
         ChoicesLogic _choice = new ChoicesLogic();
+        bool shouldKillTask = false;
 
         public void ReadLines(string fileName, bool clearScreen = true)
         {
             if (clearScreen)
             {
-                scriptHistory = "";
+                scriptHistory = new Dictionary<string, ConsoleColor>();
                 Console.Clear();
             }
 
@@ -24,7 +25,7 @@ namespace Test_Narritive
             
             for(int i = 0; i < scriptContent.Length; i++)
             {
-                if (string.IsNullOrEmpty(scriptContent[i].Trim()) || scriptContent[i].StartsWith("//"))
+                if (string.IsNullOrEmpty(scriptContent[i].Trim()) || scriptContent[i].StartsWith("//") || shouldKillTask)
                 {
                     continue;
                 }
@@ -48,7 +49,7 @@ namespace Test_Narritive
         string oldColour;
 
         Dictionary<string, string> choiceAction = new Dictionary<string, string>();
-        public static string scriptHistory;
+        public static Dictionary<string, ConsoleColor> scriptHistory = new Dictionary<string, ConsoleColor>();
         bool interpretLine(string line) // returns true if can read line
         {
             if (line.StartsWith("$ choice"))
@@ -82,6 +83,7 @@ namespace Test_Narritive
             else if (line.StartsWith("$ goto"))
             {
                 new UserSelectsChoice().OnUserMakesChoice(SplitByString(line, " || ")[1], false);
+                shouldKillTask = true;
                 return false;
             }
             else if (line.StartsWith("$ wait"))
@@ -127,7 +129,9 @@ namespace Test_Narritive
                 lineToPrint = lineToPrint.Replace("{" + key + "}", define.floatVariables[key].ToString());
             }
 
-            scriptHistory += lineToPrint + "\n";
+            //scriptHistory += lineToPrint + "\n";
+            
+            scriptHistory.Add(lineToPrint, colour);
             Console.ForegroundColor = colour;
             Console.WriteLine(lineToPrint);
             return true;

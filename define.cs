@@ -11,9 +11,8 @@ namespace Test_Narritive
         public static Dictionary<string, float> floatVariables = new Dictionary<string, float>();
         public static Dictionary<string, string> configVariables = new Dictionary<string, string>()
         {
-            { "choiceColour", "blue" },
-            { "textColour", "white" },
-            { "clearConsoleAfterChoice", "true" }
+            { "choiceSelectColour", "blue" },
+            { "textColour", "white" }
         };
 
         public static ConsoleColor stringToColour(string colour)
@@ -76,6 +75,10 @@ namespace Test_Narritive
             {
                 defineFloat(arguments);
             }
+            else if (variableType == "config")
+            {
+                defineConfig(arguments);
+            }
         }
 
         void defineString(string[] arguments)
@@ -101,6 +104,16 @@ namespace Test_Narritive
             else
             {
                 floatVariables[variableName] = float.TryParse(arguments[3], out var variableValue) ? variableValue : 0;
+            }
+        }
+        void defineConfig(string[] arguments)
+        {
+            string variableName = arguments[2]; // wasd
+            string variableValue = arguments[3]; // hello
+
+            if (configVariables.ContainsKey(variableName))
+            {
+                configVariables[variableName] = variableValue;
             }
         }
     }

@@ -7,7 +7,10 @@ namespace Test_Narritive
 {
     class ChoicesLogic
     {
-        ConsoleColor selectedColour = ConsoleColor.Blue;
+        ConsoleColor selectedColour()
+        {
+            return define.stringToColour(define.configVariables["choiceSelectColour"]);
+        }
 
         List<ConsoleColor> defaultColours(bool firstHighlighted = true)
         {
@@ -16,7 +19,7 @@ namespace Test_Narritive
             {
                 if (i == 0 && firstHighlighted)
                 {
-                    tempList.Add(selectedColour);
+                    tempList.Add(selectedColour());
                 }
                 else
                 {
@@ -28,7 +31,7 @@ namespace Test_Narritive
         List<ConsoleColor> optionColours(int selectedIndex)
         {
             List<ConsoleColor> tempList = defaultColours(false);
-            tempList[selectedIndex] = selectedColour;
+            tempList[selectedIndex] = selectedColour();
             return tempList;
         }
         List<ConsoleColor> currentColours = new List<ConsoleColor>();
@@ -103,7 +106,13 @@ namespace Test_Narritive
             if (clearConsole)
             {
                 Console.Clear();
-                Console.WriteLine(TextInterpreter.scriptHistory);
+                foreach(KeyValuePair<string, ConsoleColor> line in TextInterpreter.scriptHistory)
+                {
+                    Console.ForegroundColor = line.Value;
+                    Console.WriteLine(line.Key);
+                }
+                Console.WriteLine("");
+                Console.ForegroundColor = define.stringToColour(define.configVariables["textColour"]);
             }
 
 
@@ -116,7 +125,7 @@ namespace Test_Narritive
             for (int i = 0; i < currentOptions.Count; i++)
             {
                 Console.BackgroundColor = currentColours[i];
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = define.stringToColour(define.configVariables["textColour"]);
                 Console.WriteLine($"{i + 1}: {currentOptions[i]}");
             }
 
