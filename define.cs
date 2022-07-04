@@ -9,6 +9,56 @@ namespace Test_Narritive
     {
         public static Dictionary<string, string> stringVariables = new Dictionary<string, string>();
         public static Dictionary<string, float> floatVariables = new Dictionary<string, float>();
+        public static Dictionary<string, string> configVariables = new Dictionary<string, string>()
+        {
+            { "choiceColour", "blue" },
+            { "textColour", "white" },
+            { "clearConsoleAfterChoice", "true" }
+        };
+
+        public static ConsoleColor stringToColour(string colour)
+        {
+            switch (colour)
+            {
+                case "black":
+                    return ConsoleColor.Black;
+                case "blue":
+                    return ConsoleColor.Blue;
+                case "cyan":
+                    return ConsoleColor.Cyan;
+                case "darkBlue":
+                    return ConsoleColor.DarkBlue;
+                case "darkCyan":
+                    return ConsoleColor.DarkCyan;
+                case "darkGray":
+                    return ConsoleColor.DarkGray;
+                case "darkGreen":
+                    return ConsoleColor.DarkGreen;
+                case "darkMagenta":
+                    return ConsoleColor.DarkMagenta;
+                case "darkRed":
+                    return ConsoleColor.DarkRed;
+                case "darkYellow":
+                    return ConsoleColor.DarkYellow;
+                case "gray":
+                    return ConsoleColor.Gray;
+                case "green":
+                    return ConsoleColor.Green;
+                case "magenta":
+                    return ConsoleColor.Magenta;
+                case "red":
+                    return ConsoleColor.Red;
+                case "white":
+                    return ConsoleColor.White;
+                case "yellow":
+                    return ConsoleColor.Yellow;
+                default:
+                    throw new Exception(colour + " is not a real colour");
+            }
+
+
+
+        }
 
         public void defineVariable(string line)
         {

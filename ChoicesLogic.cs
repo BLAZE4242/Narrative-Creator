@@ -106,6 +106,8 @@ namespace Test_Narritive
                 Console.WriteLine(TextInterpreter.scriptHistory);
             }
 
+
+
             if(currentColours.Count == 0)
             {
                 currentColours = defaultColours();
@@ -114,6 +116,7 @@ namespace Test_Narritive
             for (int i = 0; i < currentOptions.Count; i++)
             {
                 Console.BackgroundColor = currentColours[i];
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine($"{i + 1}: {currentOptions[i]}");
             }
 

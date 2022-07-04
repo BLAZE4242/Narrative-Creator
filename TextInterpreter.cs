@@ -44,6 +44,9 @@ namespace Test_Narritive
         bool isInIfLoop = false; // wtf
         bool isConditionTrue = false;
 
+        int changeTempColour = 0;
+        string oldColour;
+
         Dictionary<string, string> choiceAction = new Dictionary<string, string>();
         public static string scriptHistory;
         bool interpretLine(string line) // returns true if can read line
@@ -86,29 +89,48 @@ namespace Test_Narritive
                 Thread.Sleep(int.TryParse(SplitByString(line, " || ")[1], out var timeToWait) ? timeToWait * 1000 : 0); // ? operator is for if statements, if_true : if_false
                 return false;
             }
+            else if(line.StartsWith("$ colour")) // L for us
+            {
+                changeTempColour = 1;
+                oldColour = define.configVariables["textColour"];
+                define.configVariables["textColour"] = SplitByString(line, " || ")[1];
+            }
             else if (line.StartsWith("$ define"))
             {
                 new define().defineVariable(line);
             }
             else
             {
-
-                string lineToPrint = line;
-                foreach (string key in define.stringVariables.Keys)
+                if (changeTempColour > 1)
                 {
-                    lineToPrint = lineToPrint.Replace("{" + key + "}", define.stringVariables[key]);
+                    define.configVariables["textColour"] = oldColour;
                 }
-                foreach (string key in define.floatVariables.Keys)
+                else if(changeTempColour > 0)
                 {
-                    lineToPrint = lineToPrint.Replace("{" + key + "}", define.floatVariables[key].ToString());
+                    changeTempColour++;
                 }
-
-                scriptHistory += lineToPrint + "\n";
-                Console.WriteLine(lineToPrint);
-                return true;
+                return WriteText(line, define.stringToColour(define.configVariables["textColour"]));
             }
 
             return false;
+        }
+
+        bool WriteText(string line, ConsoleColor colour)
+        {
+            string lineToPrint = line;
+            foreach (string key in define.stringVariables.Keys)
+            {
+                lineToPrint = lineToPrint.Replace("{" + key + "}", define.stringVariables[key]);
+            }
+            foreach (string key in define.floatVariables.Keys)
+            {
+                lineToPrint = lineToPrint.Replace("{" + key + "}", define.floatVariables[key].ToString());
+            }
+
+            scriptHistory += lineToPrint + "\n";
+            Console.ForegroundColor = colour;
+            Console.WriteLine(lineToPrint);
+            return true;
         }
 
         void WaitForInput()
