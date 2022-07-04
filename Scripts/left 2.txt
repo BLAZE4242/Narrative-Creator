@@ -1,0 +1,9 @@
+$ define || float || leftCount || + || 1
+You go left again.
+you went left {leftCount} times and you went right {rightCount} times
+would you like to play again?
+
+$ choice
+yes || main
+no || pass
+$ endchoice
