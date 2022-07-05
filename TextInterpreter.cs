@@ -117,7 +117,7 @@ namespace Test_Narritive
             return false;
         }
 
-        bool WriteText(string line, ConsoleColor colour)
+        public static bool WriteText(string line, ConsoleColor colour)
         {
             string lineToPrint = line;
             foreach (string key in define.stringVariables.Keys)

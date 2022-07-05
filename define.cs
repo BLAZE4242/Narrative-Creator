@@ -83,8 +83,15 @@ namespace Test_Narritive
 
         void defineString(string[] arguments)
         {
-            string variableName = arguments[2]; // wasd
-            string variableValue = arguments[3]; // hello
+            string variableName = arguments[2];
+            string variableValue = arguments[3];
+
+            if (variableValue == "input")
+            {
+                string lineContent = arguments[4];
+                TextInterpreter.WriteText(lineContent, stringToColour(configVariables["textColour"]));
+                variableValue = Console.ReadLine();
+            }
 
             stringVariables[variableName] = variableValue;
         }

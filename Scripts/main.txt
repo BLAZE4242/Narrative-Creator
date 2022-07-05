@@ -4,6 +4,8 @@ $ define || config || textColour || white
 $ define || config || choiceSelectColour || red
 
 you see a path
+$ define || string || playerName || input || Wait what's your name again?
+Ah, it's nice to meet you {playerName}
 do you go left or right?
 
 $ choice
